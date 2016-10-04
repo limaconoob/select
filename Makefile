@@ -6,7 +6,7 @@
 #    By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/05 09:39:50 by jpepin            #+#    #+#              #
-#    Updated: 2016/09/20 09:12:52 by jpepin           ###   ########.fr        #
+#    Updated: 2016/09/29 04:16:29 by jpepin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ NAME = ft_select
 SRC = main.c \
 			command_line.c \
 			coucou_init.c \
+			deplacement.c \
 			do_exit.c \
+			find.c \
 			fleche.c \
 			fleche_de_droite.c \
 			fleche_de_gauche.c \
@@ -45,6 +47,8 @@ SRC = main.c \
 			matrix_init.c \
 			mouse.c \
 			put_result.c \
+			put_window.c \
+			redimension.c \
 			remove_file.c \
 			select_cure.c \
 			select_error.c \
@@ -53,6 +57,8 @@ SRC = main.c \
 			slide.c \
 			term_coord.c \
 			term_init.c \
+			term_size.c \
+			ttri_init.c \
 			wind_clear.c \
 			wind_line.c \
 			windower.c

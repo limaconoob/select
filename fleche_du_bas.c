@@ -6,7 +6,7 @@
 /*   By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 07:56:23 by jpepin            #+#    #+#             */
-/*   Updated: 2016/09/20 08:10:46 by jpepin           ###   ########.fr       */
+/*   Updated: 2016/09/28 07:25:33 by jpepin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include "libft.h"
 
 void fleche_du_bas(t_term *coucou, int *coord)
-{ BZE(MAPP[coord[1]][coord[0]]->attr[1], 8);
-  if (CURS[1] < WIND[1] + WIND[3] - 4 && CURS[0] + coucou->size_max < WIND[0] + WIND[2] && MAPP[coord[1]][coord[0] + 1])
+{ if (CURS[1] < WIND[1] + WIND[3] - 4 && CURS[0] + coucou->size_max < WIND[0] + WIND[2] && MAPP[coord[1]][coord[0] + 1])
   { CURS[1] += 1; }
   else if (CURS[1] == WIND[1] + WIND[3] - 4 || !MAPP[coord[1]][coord[0] + 1])
   { CURS[1] = WIND[1] + 3;
@@ -28,4 +27,4 @@ void fleche_du_bas(t_term *coucou, int *coord)
       WIND[4] = SIZE - WIND[2]; }
     else
     { WIND[4] = 0;
-      CURS[0] = 2; }}}
+      CURS[0] = WIND[0] + 2; }}}

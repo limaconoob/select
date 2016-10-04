@@ -6,7 +6,7 @@
 /*   By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/12 09:12:39 by jpepin            #+#    #+#             */
-/*   Updated: 2016/09/20 06:53:41 by jpepin           ###   ########.fr       */
+/*   Updated: 2016/09/28 06:11:11 by jpepin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void put_result(t_term *coucou)
   i = 0;
   flag = 1;
   go_to(0, WIND[1] - 1);
-  while (i < coucou->nb_files)
-  { if (coucou->tab_tri[i])
-    { ft_putstr(coucou->tab_tri[i]);
+  while (i < NFIL)
+  { if (TTRI[i])
+    { ft_putstr(TTRI[i]);
       ft_putchar(' ');
       flag = 0; }
     i += 1; }

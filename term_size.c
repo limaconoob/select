@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wind_clear.c                                       :+:      :+:    :+:   */
+/*   term_size.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/04 01:38:39 by jpepin            #+#    #+#             */
-/*   Updated: 2016/09/27 07:47:54 by jpepin           ###   ########.fr       */
+/*   Created: 2016/09/22 00:33:12 by jpepin            #+#    #+#             */
+/*   Updated: 2016/09/22 02:51:25 by jpepin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "select.h"
-#include "libft.h"
+#include <sys/ioctl.h>
 
-void wind_clear(t_term *coucou)
-{ static char attr[10][8] = {"\033[0m", "", "", "", "", "", "", "", "", ""};
-  int i;
-  int j;
-  i = 0;
-  while (i < WIND[3])
-  { j = WIND[4] - 1;
-    while (++j < WIND[2] + WIND[4])
-    { init_char(' ', &MATR[i + WIND[1] - 1][j], attr); }
-    i += 1; }}
+int (*(term_size)(void))[2]
+{ struct winsize w;
+  static int size[2];
+  ioctl(0, TIOCGWINSZ, &w);
+  size[0] = w.ws_col;
+  size[1] = w.ws_row;
+  return (&size); }

@@ -6,7 +6,7 @@
 /*   By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/09 02:33:13 by jpepin            #+#    #+#             */
-/*   Updated: 2016/09/12 09:44:18 by jpepin           ###   ########.fr       */
+/*   Updated: 2016/09/27 07:53:45 by jpepin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,18 @@ static void mouse_use(void)
   { ft_putstr_fd("\033[?1006l\x1b[?1015l\x1b[?1002l\x1b[?1000l", 2);
     mouse_flag = 0; }}
 
-void term_init(void)
+void term_init(int sig, t_term *coucou)
 { struct termios term;
+  static t_term *stock;
+  if (!sig && coucou)
+  { stock = coucou;
+    return ; }
+  else if (sig == 28)
+  { windower(stock);
+    return ; }
+  else if (sig == 19)
+  { init_wind(stock);
+    windower(stock); }
 	if (ioctl(0, TIOCGETA, &term) == -1)
   { select_error(TermInit, "TermKappa"); }
 	term.c_lflag ^= ~(ICANON);

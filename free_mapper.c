@@ -6,7 +6,7 @@
 /*   By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/12 09:22:01 by jpepin            #+#    #+#             */
-/*   Updated: 2016/09/13 09:21:49 by jpepin           ###   ########.fr       */
+/*   Updated: 2016/09/29 05:11:15 by jpepin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 void free_mapper(t_term *coucou)
 { int i;
   int j;
-  i = -1;
-  while (++i < coucou->nb_col)
-  { j = -1;
-    while (MAPP[i][++j])
-    { free(MAPP[i][j]); }
+  i = 0;
+  while (i < coucou->nb_col)
+  { j = 0;
+    while (MAPP[i][j])
+    { free(MAPP[i][j]);
+      j += 1; }
     free(MAPP[i][j]);
-    free(MAPP[i]); }
+    free(MAPP[i]);
+    i += 1; }
   free(MAPP[i]);
   free(MAPP); }

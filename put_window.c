@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wind_clear.c                                       :+:      :+:    :+:   */
+/*   put_window.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/04 01:38:39 by jpepin            #+#    #+#             */
-/*   Updated: 2016/09/27 07:47:54 by jpepin           ###   ########.fr       */
+/*   Created: 2016/09/23 02:27:25 by jpepin            #+#    #+#             */
+/*   Updated: 2016/09/27 07:51:24 by jpepin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
 #include "libft.h"
 
-void wind_clear(t_term *coucou)
-{ static char attr[10][8] = {"\033[0m", "", "", "", "", "", "", "", "", ""};
-  int i;
-  int j;
-  i = 0;
-  while (i < WIND[3])
-  { j = WIND[4] - 1;
-    while (++j < WIND[2] + WIND[4])
-    { init_char(' ', &MATR[i + WIND[1] - 1][j], attr); }
-    i += 1; }}
+void put_window(t_term *coucou, char (*buf)[12])
+{ init_wind(coucou);
+  term_init(0, coucou);
+  go_to(WIND[0], WIND[1] - 1);
+  windower(coucou);
+  if (buf)
+  { BZE(*buf, 12); }}

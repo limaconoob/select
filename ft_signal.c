@@ -6,21 +6,19 @@
 /*   By: jpepin <jpepin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/09 04:49:23 by jpepin            #+#    #+#             */
-/*   Updated: 2016/09/09 04:51:03 by jpepin           ###   ########.fr       */
+/*   Updated: 2016/09/22 02:50:54 by jpepin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "select.h"
-#include <sys/ioctl.h>
 #include <signal.h>
 
 static void mutter_sig(int sig)
-{ struct winsize w;
-  if (sig == SIGWINCH)
-  { ioctl(0, TIOCGWINSZ, &w);
-    get_size(w.ws_col, w.ws_row, NULL); }
-  else if (sig == SIGTSTP || sig == SIGINT)
-  { term_init(); }}
+{ if (sig == SIGWINCH)
+  { get_size(term_size(), NULL);
+    term_init(sig, NULL); }
+  else if (sig == SIGTSTP || sig == SIGINT || sig == SIGCONT)
+  { term_init(sig, NULL); }}
 
 void ft_signal(void)
 { signal(SIGWINCH, mutter_sig);
